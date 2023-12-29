@@ -6,6 +6,9 @@ const props = defineProps({
   label: {
     type: String,
   },
+  placeholder: {
+    type: String,
+  },
 });
 const emit = defineEmits(["update:modelValue"]);
 
@@ -24,6 +27,7 @@ const value = computed({
     <label class="block mb-2">{{ label }}</label>
     <input
       v-model="value"
+      :placeholder="placeholder"
       class="w-full py-2 px-3 rounded border text-neutral-900 outline-none"
     />
   </div>

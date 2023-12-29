@@ -27,7 +27,7 @@ const emit = defineEmits(["click"]);
     class="rounded-md font-medium"
     :class="{
       'w-full': block,
-      'p-2': dense,
+      'p-2 px-4': dense,
       'p-4': !dense,
       'bg-neutral-900 hover:bg-neutral-700': type == 'primary',
       'hover:bg-neutral-700': type == 'text',
