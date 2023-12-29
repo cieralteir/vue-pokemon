@@ -7,12 +7,12 @@ const props = defineProps({
     required: true,
   },
 });
-
-const habitatLabel = computed(() =>
-  props.habitat.name.toUpperCase().replace("-", " ")
-);
 </script>
 
 <template>
-  <div class="p-4 rounded bg-neutral-700">{{ habitatLabel }}</div>
+  <div
+    class="p-4 rounded bg-neutral-700 hover:bg-neutral-600 hover:cursor-pointer"
+  >
+    {{ $displayLabel(props.habitat.name) }}
+  </div>
 </template>

@@ -16,6 +16,11 @@ const routes = [
       public: true,
     },
   },
+  {
+    path: "/explore/:name",
+    name: "explore",
+    component: () => import("@/views/explore/[name].vue"),
+  },
 ];
 
 const router = createRouter({

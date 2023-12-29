@@ -5,11 +5,11 @@ import HabitatList from "@/components/Habitat/HabitatList.vue";
 
 <template>
   <div class="mb-8">
-    <h1 class="mb-3 text-xl">POKEMONS</h1>
-    <PokemonList />
-  </div>
-  <div>
     <h1 class="mb-3 text-xl">EXPLORE</h1>
     <HabitatList />
+  </div>
+  <div>
+    <h1 class="mb-3 text-xl">POKEMONS</h1>
+    <PokemonList />
   </div>
 </template>
