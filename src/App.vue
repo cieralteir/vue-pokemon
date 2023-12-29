@@ -1,11 +1,18 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
+import { computed } from "vue";
+import { RouterView, useRoute } from "vue-router";
+import AuthLayout from "@/layouts/AuthLayout.vue";
+import GuestLayout from "@/layouts/GuestLayout.vue";
+
+const route = useRoute();
+
+const layout = computed(() => {
+  return route.meta?.public ? GuestLayout : AuthLayout;
+});
 </script>
 
 <template>
-  <header class="p-3">POKE</header>
-
-  <div class="container mx-auto">
+  <component :is="layout">
     <RouterView />
-  </div>
+  </component>
 </template>

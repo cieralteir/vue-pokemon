@@ -5,14 +5,14 @@
 @tailwind utilities;
 
 @layer base {
-  html,
-  body,
-  #app {
-    @apply h-full;
-  }
-
-  html {
+  body {
+    @apply h-screen;
+    @apply w-screen;
     @apply bg-neutral-900;
     @apply text-neutral-100;
+  }
+  #app {
+    @apply h-full;
+    @apply w-full;
   }
 }
