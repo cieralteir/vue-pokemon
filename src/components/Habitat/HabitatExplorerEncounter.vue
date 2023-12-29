@@ -48,7 +48,7 @@ function ignorePokemon() {
       Failed to caputre {{ $displayLabel(props.pokemon.name) }} ...
     </p>
   </div>
-  <div class="flex flex-col gap-4 w-96" v-else>
+  <div class="flex flex-col gap-4 w-80" v-else>
     <PokemonCard :pokemon="props.pokemon" class="mb-4" />
     <p>You've stumbled upon a wild Pokémon! What's your next move?</p>
     <div class="flex flex-col">

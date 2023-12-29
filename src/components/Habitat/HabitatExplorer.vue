@@ -48,7 +48,7 @@ function onEncounterResolved() {
 function explore() {
   setTimeout(() => {
     encounterPokemon();
-  }, 3000);
+  }, 1000);
 }
 
 onMounted(async () => {
@@ -63,5 +63,5 @@ onMounted(async () => {
     @resolved="onEncounterResolved"
     v-if="encounter"
   />
-  <p v-else>Exploring {{ $displayLabel(props.habitatName) }} ...</p>
+  <p v-else>Exploring "{{ $displayLabel(props.habitatName) }}" ...</p>
 </template>
