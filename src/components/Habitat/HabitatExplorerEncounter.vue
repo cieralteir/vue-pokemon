@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { type PropType, ref } from "vue";
 import { usePokemonStore } from "@/stores/pokemon";
 import type Pokemon from "@/types/Pokemon";
-import PokemonCard from "@/components/Pokemon/PokemonCard.vue";
+import PokemonBasic from "@/components/Pokemon/PokemonBasic.vue";
 import BaseButton from "@/components/Base/BaseButton.vue";
 
 const props = defineProps({
   pokemon: {
-    type: Object as Pokemon,
+    type: Object as PropType<Pokemon>,
     required: true,
   },
 });
@@ -32,7 +32,7 @@ function catchPokemon() {
   // Display outcome for a short time
   setTimeout(() => {
     emit("resolved");
-  }, 2000);
+  }, 1000);
 }
 
 function ignorePokemon() {
@@ -45,11 +45,11 @@ function ignorePokemon() {
       You've captured {{ $displayLabel(props.pokemon.name) }}!
     </p>
     <p v-if="outcome == 'catch_failed'">
-      Failed to caputre {{ $displayLabel(props.pokemon.name) }} ...
+      {{ $displayLabel(props.pokemon.name) }} got away...
     </p>
   </div>
-  <div class="flex flex-col gap-4 w-80" v-else>
-    <PokemonCard :pokemon="props.pokemon" class="mb-4" />
+  <div class="flex flex-col gap-4 w-96" v-else>
+    <PokemonBasic :pokemon="props.pokemon" class="mb-4" />
     <p>You've stumbled upon a wild Pokémon! What's your next move?</p>
     <div class="flex flex-col">
       <BaseButton @click="catchPokemon">CATCH</BaseButton>

@@ -28,16 +28,18 @@ const encounter = ref<Pokemon | null>(null);
 
 async function encounterPokemon() {
   const index: number = Math.ceil(
-    Math.random() * habitat.value.pokemon_species.length
+    Math.random() * (habitat.value?.pokemon_species.length || 0)
   );
-  const pokemonName: string = habitat.value.pokemon_species[index].name;
+  const pokemonName = habitat.value?.pokemon_species[index].name;
   console.log(pokemonName);
-  // Fetch pokemon data from POKE API
-  const response = await PokemonService.read(pokemonName).then(
-    (response) => response.data
-  );
-  console.log("encounter pokemon", response);
-  encounter.value = response;
+  if (pokemonName) {
+    // Fetch pokemon data from POKE API
+    const response = await PokemonService.read(pokemonName).then(
+      (response) => response.data
+    );
+    console.log("encounter pokemon", response);
+    encounter.value = response;
+  }
 }
 
 function onEncounterResolved() {

@@ -7,7 +7,7 @@ export default class HabitatService {
     return api.get(RESOURCE);
   }
 
-  static read(id) {
-    return api.get(RESOURCE + `/${id}`);
+  static read(name: string) {
+    return api.get(RESOURCE + `/${name}`);
   }
 }

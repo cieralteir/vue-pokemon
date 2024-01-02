@@ -6,6 +6,10 @@ import HabitatExplorer from "@/components/Habitat/HabitatExplorer.vue";
 const route = useRoute();
 const router = useRouter();
 
+const habitatName = Array.isArray(route.params.name)
+  ? route.params.name[0]
+  : route.params.name;
+
 function back() {
   router.replace({ name: "home" });
 }
@@ -18,7 +22,7 @@ function back() {
     </div>
     <div class="grow">
       <div class="flex justify-center items-center h-full">
-        <HabitatExplorer :habitat-name="route.params.name" />
+        <HabitatExplorer :habitat-name="habitatName" />
       </div>
     </div>
   </div>

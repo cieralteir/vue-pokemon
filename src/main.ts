@@ -12,47 +12,72 @@ app.use(createPinia());
 app.use(router);
 
 // Global filters
-app.config.globalProperties.$displayLabel = (value: string) => {
+declare module "vue" {
+  interface ComponentCustomProperties {
+    $displayLabel: (value: string) => string;
+    $pokemonTypeColor: (type: string) => string;
+  }
+}
+app.config.globalProperties.$displayLabel = (value: string): string => {
   if (!value) return "";
   return `${value.charAt(0).toUpperCase() + value.slice(1)}`.replace("-", " ");
 };
-app.config.globalProperties.$pokemonTypeColor = (type: string) => {
+app.config.globalProperties.$pokemonTypeColor = (type: string): string => {
+  let color = "";
   switch (type) {
     case "fire":
-      return "red-500";
+      color = "red-500";
+      break;
     case "water":
-      return "blue-400";
+      color = "cyan-500";
+      break;
     case "grass":
-      return "emerald-500";
+      color = "emerald-500";
+      break;
     case "electric":
-      return "amber-300";
+      color = "amber-300";
+      break;
     case "ground":
+      break;
     case "rock":
-      return "stone-700";
+      color = "stone-500";
+      break;
     case "normal":
-      return "neutral-500";
+      color = "neutral-500";
+      break;
     case "fighting":
-      return "orange-900";
+      color = "amber-800";
+      break;
     case "flying":
-      return "sky-400";
+      color = "sky-400";
+      break;
     case "poison":
-      return "purple-600";
+      color = "violet-400";
+      break;
     case "psychic":
-      return "pink-500";
+      color = "pink-400";
+      break;
     case "ice":
-      return "cyan-400";
+      color = "cyan-400";
+      break;
     case "bug":
-      return "lime-500";
+      color = "lime-500";
+      break;
     case "dragon":
-      return "sky-700";
+      color = "sky-700";
+      break;
     case "ghost":
     case "dark":
-      return "gray-700";
+      color = "gray-600";
+      break;
     case "steel":
-      return "slate-600"
+      color = "slate-600";
+      break;
     case "fairy":
-      return "rose-400";
+      color = "rose-400";
+      break;
   }
+  return color;
 };
 
 app.mount("#app");

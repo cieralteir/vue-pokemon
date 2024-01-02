@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PropType, type ButtonHTMLAttributes } from "vue";
+import { type PropType, type ButtonHTMLAttributes } from "vue";
 
 const props = defineProps({
   type: {
