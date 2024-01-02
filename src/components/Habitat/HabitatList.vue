@@ -1,22 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
+import { useHabitatStore } from "@/stores/habitat";
 import type Habitat from "@/types/Habitat";
-import HabitatService from "@/services/habitat.service";
 import HabitatListCard from "@/components/Habitat/HabitatListCard.vue";
 
 const router = useRouter();
 
-const habitats = ref<Habitat[]>([]);
-
-async function fetchHabitats() {
-  // Fetch habitats from POKE API
-  const response = await HabitatService.list().then(
-    (response) => response.data.results
-  );
-  console.log("habitats", response);
-  habitats.value = response;
-}
+const { habitats, loadHabitats } = useHabitatStore();
 
 function onHabitatClick(habitat: Habitat) {
   // Navigate to habitat page
@@ -24,7 +15,7 @@ function onHabitatClick(habitat: Habitat) {
 }
 
 onMounted(() => {
-  fetchHabitats();
+  loadHabitats();
 });
 </script>
 
