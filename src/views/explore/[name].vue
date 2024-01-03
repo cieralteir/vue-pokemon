@@ -16,12 +16,14 @@ function back() {
 </script>
 
 <template>
-  <div class="flex flex-col h-full">
-    <div>
-      <BaseButton @click="back">GO BACK</BaseButton>
+  <div class="flex flex-col pb-4">
+    <div class="mb-4">
+      <BaseButton @click="back">
+        <font-awesome-icon :icon="['fas', 'arrow-left']" /> BACK
+      </BaseButton>
     </div>
     <div class="grow">
-      <div class="flex justify-center items-center h-full">
+      <div class="flex justify-center">
         <HabitatExplorer :habitat-name="habitatName" />
       </div>
     </div>

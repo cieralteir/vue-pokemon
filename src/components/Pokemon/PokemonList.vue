@@ -15,7 +15,7 @@ function onPokemonClick(pokemon: Pokemon) {
 </script>
 
 <template>
-  <div class="grid grid-cols-6 gap-4" v-if="pokemons.length">
+  <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4" v-if="pokemons.length">
     <PokemonListCard
       :pokemon="pokemon"
       v-for="pokemon in pokemons"

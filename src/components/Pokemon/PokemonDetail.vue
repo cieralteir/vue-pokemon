@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, type PropType, ref } from "vue";
 import { usePokemonStore } from "@/stores/pokemon";
+import { displayLabel } from "@/helpers/helpers";
 import type Pokemon from "@/types/Pokemon";
 import type PokemonSpecies from "@/types/PokemonSpecies";
 import PokemonSpeciesService from "@/services/pokemonSpecies.service";
@@ -51,7 +52,7 @@ onMounted(() => {
           <tr v-for="stat in pokemon.stats" :key="stat.stat.name">
             <td class="p-1 px-2">
               <div class="w-[150px] p-2 bg-neutral-200 font-semibold">
-                {{ $displayLabel(stat.stat.name) }}
+                {{ displayLabel(stat.stat.name) }}
               </div>
             </td>
             <td class="p-1 px-2">{{ stat.base_stat }}</td>
@@ -67,7 +68,7 @@ onMounted(() => {
                 v-for="ability in pokemon.abilities"
                 :key="ability.ability.name"
               >
-                {{ $displayLabel(ability.ability.name) }}
+                {{ displayLabel(ability.ability.name) }}
               </p>
               <p v-if="pokemon.abilities.length == 0">---</p>
             </td>
@@ -80,7 +81,7 @@ onMounted(() => {
             </td>
             <td>
               <p v-for="item in pokemon.held_items" :key="item.item.name">
-                {{ $displayLabel(item.item.name) }}
+                {{ displayLabel(item.item.name) }}
               </p>
               <p v-if="pokemon.held_items.length == 0">---</p>
             </td>
@@ -88,6 +89,13 @@ onMounted(() => {
         </tbody>
       </table>
     </div>
-    <BaseButton @click="releasePokemon(props.pokemon.name)">RELEASE</BaseButton>
+    <BaseButton
+      type="info"
+      :rounded="false"
+      slanted
+      @click="releasePokemon(props.pokemon.name)"
+    >
+      RELEASE
+    </BaseButton>
   </div>
 </template>

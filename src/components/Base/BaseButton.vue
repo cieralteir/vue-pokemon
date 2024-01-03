@@ -14,6 +14,14 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  rounded: {
+    type: Boolean,
+    default: true,
+  },
+  slanted: {
+    type: Boolean,
+    default: false,
+  },
   nativeType: {
     type: String as PropType<ButtonHTMLAttributes["type"]>,
     default: "button",
@@ -24,17 +32,23 @@ const emit = defineEmits(["click"]);
 
 <template>
   <button
-    class="rounded-md font-medium"
+    class="font-medium hover:opacity-75"
     :class="{
       'w-full': block,
       'p-2 px-4': dense,
       'p-4': !dense,
-      'bg-neutral-900 hover:bg-neutral-700': type == 'primary',
-      'hover:bg-neutral-700': type == 'text',
+      'rounded-md': rounded,
+      '-skew-x-12': slanted,
+      'bg-neutral-900 ': type == 'primary',
+      'bg-red-500': type == 'danger',
+      'bg-blue-500': type == 'info',
+      'bg-neutral-100 text-neutral-900': type == 'light',
     }"
     :type="nativeType"
     @click="emit('click')"
   >
-    <slot />
+    <div :class="{ 'skew-x-12': slanted }">
+      <slot />
+    </div>
   </button>
 </template>

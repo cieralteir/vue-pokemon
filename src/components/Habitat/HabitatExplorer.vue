@@ -20,7 +20,6 @@ async function fetchHabitat() {
   const response = await HabitatService.read(props.habitatName).then(
     (response) => response.data
   );
-  console.log("habitat", response);
   habitat.value = response;
 }
 
@@ -31,13 +30,11 @@ async function encounterPokemon() {
     Math.random() * (habitat.value?.pokemon_species.length || 0)
   );
   const pokemonName = habitat.value?.pokemon_species[index].name;
-  console.log(pokemonName);
   if (pokemonName) {
     // Fetch pokemon data from POKE API
     const response = await PokemonService.read(pokemonName).then(
       (response) => response.data
     );
-    console.log("encounter pokemon", response);
     encounter.value = response;
   }
 }
@@ -47,10 +44,13 @@ function onEncounterResolved() {
   explore();
 }
 
-function explore() {
-  setTimeout(() => {
-    encounterPokemon();
-  }, 1000);
+async function explore() {
+  await new Promise((resolve) => {
+    setTimeout(async () => {
+      await encounterPokemon();
+      resolve(true);
+    }, 1000);
+  });
 }
 
 onMounted(async () => {
@@ -65,5 +65,8 @@ onMounted(async () => {
     @resolved="onEncounterResolved"
     v-if="encounter"
   />
-  <p v-else>Exploring "{{ $displayLabel(props.habitatName) }}" ...</p>
+  <div class="flex flex-col gap-2 items-center" v-else>
+    <font-awesome-icon :icon="['fas', 'running']" class="h-[40px]" />
+    <p>Exploring {{ props.habitatName }} ...</p>
+  </div>
 </template>

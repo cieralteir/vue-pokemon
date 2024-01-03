@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type PropType } from "vue";
+import { displayLabel, pokemonTypeColor } from "@/helpers/helpers";
 import type Pokemon from "@/types/Pokemon";
 
 const props = defineProps({
@@ -12,14 +13,14 @@ const props = defineProps({
 
 <template>
   <div
-    :class="`flex rounded bg-${$pokemonTypeColor(
+    :class="`flex rounded bg-${pokemonTypeColor(
       props.pokemon.types[0]?.type.name
     )}`"
   >
     <div class="grow p-4">
       <p class="text-sm text-neutral-900">#{{ props.pokemon.id }}</p>
       <h2 class="mb-1 text-2xl">
-        {{ $displayLabel(props.pokemon.name) }}
+        {{ displayLabel(props.pokemon.name) }}
       </h2>
       <div class="flex gap-1">
         <div

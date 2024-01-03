@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { displayLabel } from "@/helpers/helpers";
 
 const props = defineProps({
   habitat: {
@@ -11,8 +11,10 @@ const props = defineProps({
 
 <template>
   <div
-    class="p-4 rounded bg-neutral-700 hover:bg-neutral-600 hover:cursor-pointer"
+    class="p-4 bg-neutral-700 hover:bg-neutral-600 -skew-x-12 hover:cursor-pointer"
   >
-    {{ $displayLabel(props.habitat.name) }}
+    <div class="skew-x-12">
+      {{ displayLabel(props.habitat.name) }}
+    </div>
   </div>
 </template>

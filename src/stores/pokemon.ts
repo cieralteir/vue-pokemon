@@ -1,9 +1,22 @@
-import { ref, computed, reactive } from "vue";
+import { onMounted, reactive, watch } from "vue";
 import { defineStore } from "pinia";
 import type Pokemon from "@/types/Pokemon";
 
 export const usePokemonStore = defineStore("pokemon", () => {
   const pokemons = reactive<Pokemon[]>([]);
+  // Get from localStorage if exists
+  const _pokemons = localStorage.getItem("_pokemons");
+  if (_pokemons) {
+    pokemons.push(...JSON.parse(_pokemons));
+  }
+
+  watch(
+    pokemons,
+    () => {
+      localStorage.setItem("_pokemons", JSON.stringify(pokemons));
+    },
+    { deep: true }
+  );
 
   function addPokemon(paylaod: Pokemon) {
     pokemons.push(paylaod);
@@ -20,5 +33,9 @@ export const usePokemonStore = defineStore("pokemon", () => {
     }
   }
 
-  return { pokemons, addPokemon, getPokemon, removePokemon };
+  function clearPokemons() {
+    pokemons.length = 0;
+  }
+
+  return { pokemons, addPokemon, getPokemon, removePokemon, clearPokemons };
 });
